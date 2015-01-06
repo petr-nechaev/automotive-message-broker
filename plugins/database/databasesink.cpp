@@ -68,9 +68,8 @@ void * cbFunc(gpointer data)
 	/// final flush of whatever is still in the queue:
 
 	shared->db->exec("BEGIN IMMEDIATE TRANSACTION");
-	for(int i=0; i< insertList.size(); i++)
+	for(auto d : insertList)
 	{
-		DictionaryList<string> d = insertList[i];
 		shared->db->insert(d);
 	}
 	shared->db->exec("END TRANSACTION");
@@ -389,6 +388,8 @@ void DatabaseSink::setDatabaseFileName(string filename)
 void DatabaseSink::propertyChanged(AbstractPropertyType *value)
 {
 	VehicleProperty::Property property = value->name;
+
+	DebugOut() << "Received property change for " << property << endl;
 
 	if(!shared)
 		return;

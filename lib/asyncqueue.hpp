@@ -51,6 +51,10 @@ public:
 	{
 		std::lock_guard<std::mutex> lock(mutex);
 
+
+		if(!mQueue.size())
+			throw std::runtime_error("nothing in queue");
+
 		auto itr = mQueue.begin();
 
 		T item = *itr;
