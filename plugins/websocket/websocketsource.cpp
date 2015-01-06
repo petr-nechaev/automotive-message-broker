@@ -286,7 +286,7 @@ static int callback_http_only(libwebsocket_context *context, struct libwebsocket
 			else
 			{
 				doc = QJsonDocument::fromJson(d);
-				DebugOut(7)<<d.data()<<endl;
+				DebugOut(7)<<"Received: " << d.data()<<endl;
 			}
 
 			if(doc.isNull())
